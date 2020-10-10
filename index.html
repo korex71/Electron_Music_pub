@@ -1,0 +1,282 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron Music</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/toastify.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./node_modules/rangeslider.js/dist/rangeslider.css">
+    <script src="assets/fonts/feather.min.js"></script>
+</head>
+<body>
+    <div class="root">
+        <nav class="nav-bar d-flex flex-column">
+            <div class="nav-bar-header d-flex pl-4 pt-4 pb-4 ">
+                <h4 class="text-success noselect">Electron Music</h4>
+            </div>
+
+            <ul class="navbar-nav">
+                <li class="nav-item active noselect">
+                    <a href="#" class="nav-link d-flex align-items-center toggle-page" ref="home">
+                        <!-- <i class="fas fa-home"></i> -->
+                        <div class="icon home-icon NavBar__icon">
+                            
+                            <svg viewBox="0 0 512 512" width="24" height="24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M 256.274 60.84 L 84.324 166.237 L 84.324 443.063 L 193.27 443.063 L 193.27 293.73 L 320.228 293.73 L 320.228 443.063 L 428.222 443.063 L 428.222 165.476 L 256.274 60.84 Z M 256.274 35.95 L 448.452 149.145 L 448.452 464.395 L 300 464.395 L 300 315.062 L 213.499 315.062 L 213.499 464.395 L 64.095 464.395 L 64.095 150.161 L 256.274 35.95 Z"
+                                    fill="currentColor"></path>
+                            </svg></div>
+                        <span>Início</span>
+                    </a>
+                </li>
+                <li class="nav-item noselect">
+                    <a href="#" class="nav-link d-flex align-items-center toggle-page" ref="search">
+                        <!-- <i class="fas fa-search"></i> -->
+                        <div class="icon search-icon NavBar__icon">
+                            <i data-feather="search" width="24" height="24"></i>
+                        </div>
+                        <span>Buscar</span>
+                    </a>
+                </li>
+                <li class="nav-item noselect">
+                    <a href="#" class="nav-link d-flex align-items-center toggle-page" ref="library">
+                        <!-- <i class="fas fa-stream"></i> -->
+                        <div class="icon collection-active-icon NavBar__icon"><svg viewBox="0 0 512 512" width="24"
+                                height="24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M311.873 77.46l166.349 373.587-39.111 17.27-166.349-373.587zM64 463.746v-384h42.666v384h-42.666zM170.667 463.746v-384h42.667v384h-42.666z"
+                                    fill="currentColor"></path>
+                            </svg></div>
+                        <span>Sua Biblioteca</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="root-list d-flex flex-column mt-4">
+                <div class="root-list-header noselect">
+                    <h2>Playlists</h2>
+                </div>
+
+                <div class="root-list-body noselect">
+                    <a data-toggle="modal" data-target="#downloadModal">
+                        <div class="root-list-item d-flex">
+                            <div class="root-list-icon add d-flex justify-content-center align-items-center">
+                                <i class="fas fa-plus text-dark"></i>
+                            </div>
+                            <span>Criar Playlist</span>
+                        </div>
+                    </a>
+                    <a data-toggle="modal" data-target="#downloadModal">
+                        <div class="root-list-item d-flex">
+                                <div class="root-list-icon heart d-flex justify-content-center align-items-center">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <span>Downloads</span>
+                        </div>
+                    </a>
+                </div>
+                <hr class="root-list-divider" />
+
+                <ul class="navbar-nav playlist-scroll overflow-auto">
+                    <li>
+                        <div class="playlist-item d-flex align-items-center">
+                            <a href="#">
+                                <!-- Músicas de filmes que marcaram -->
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                
+                <!-- <div class="navbar-footer">
+                    <a href="#" class="d-flex align-items-center">
+                        <i class="far fa-arrow-alt-circle-down mr-3"></i>
+                        <span>Instalar aplicativo</span>
+                    </a>
+                </div> -->
+            </div>
+        </nav>
+
+        <div class="top-bar">
+            <header id="header" class="d-flex header position-relative">
+                <div id="header-overlay"></div>
+                <div class="icons-action-left d-flex">
+                    <button class="page-back d-flex justify-content-center align-items-center">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-go d-flex justify-content-center align-items-center ml-3">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <input class="ml-5 custom-search" type="text" placeholder="Pesquisa">
+                    <button type="button" class="btn btn-success bg-success btn-search">
+                        <i data-feather="search" width="16" height="16"></i>
+                    </button>
+                </div>
+                <div class="d-flex ml-auto">
+                    <!-- <button class="btn-upgrade">Faça upgrade</button>  -->
+                    <div class="dropdown menu ml-3">
+                        <button type="button" class="d-flex align-items-center justify-content-center"
+                            data-toggle="dropdown">
+                            <i data-feather="user" width="16" height="16"></i>
+                            <span>Usuário</span>
+                            <i class="fas fa-caret-down ml-2 mr-2"></i>
+                        </button>
+                        <div class="dropdown-menu mt-0 p-0">
+                            <a href="#" class="dropdown-item window-config">Configurações</a>
+                            <a href="#" class="dropdown-item">Perfil</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div id="main" class="main d-flex flex-column">
+            <div class="margin-top"></div>
+
+            <div class="main-container px-4 py-2">
+                <div id="home" class="active-page">
+                    <h2 class="title mb-3">Tocado recentemente</h2>
+
+                    <div class="row list mb-5" id="history">
+
+                    </div>
+
+
+
+                    <div class="d-flex align-items-center mb-3 mb-3">
+                        <div>
+                            <h2 class="title mb-1">100 Músicas populares brasil</h2>
+                        </div>
+                    </div>
+
+                    <div class="row list mb-5" id="mainpl">
+                        
+                    </div>
+
+                </div>
+                <!-- END OF HOMEPAGE -->
+                <div id="search" style="display: none;">
+                    <div class="row">
+                        <h3 class="text-center search-text text-white"></h3>
+                    </div>
+                    <div class="container-fluid mt-3 mb-5 list-videos">
+                        
+                    </div>
+                </div> 
+                <!-- END OF SEARCH COMPONENT -->
+                <div id="library" class="library-list text-white" style="display: none;">
+
+                </div>
+            </div> <!-- END OF MAIN CONTAINER-->
+        </div> <!-- END MAIN -->
+        <div class="player d-flex align-items-center  noselect">
+            <footer class="w-100">
+                <div class="row">
+                    <div class="col-3 d-flex align-items-center">
+                        <div class="cover">
+                            <img src="" />
+                        </div>
+                        <div class="d-flex flex-column text ml-3 mr-3 marquee">
+                            <label class="color-default song default-song"></label>
+                            <label class="color-default song default-author text-nowrap" style="overflow:hidden"></label>
+                        </div>
+                        <div class="d-flex icon justify-content-center align-items-center save-song" id="heart">
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center align-items-center">
+                        <div class="player-center">
+                            <div class="player-center-control d-flex justify-content-center align-items-center">
+                                <button class="icon d-flex justify-content-center align-items-center">
+                                    <i data-feather="shuffle" width="16" height="14"></i>
+                                </button>
+                                <button class="icon d-flex justify-content-center align-items-center back">
+                                    <i data-feather="chevron-left" width="18" height="16" stroke-width="3"></i>
+                                </button>
+                                <button class="play icon d-flex justify-content-center align-items-center audio-play" id="playb">
+                                    <i data-feather="play-circle" width="38" height="38" stroke-width="1" id="play-ico"></i>
+                                </button>
+                                <button class="icon d-flex justify-content-center align-items-center next">
+                                    <i data-feather="chevron-right" width="18" height="16" stroke-width="3"></i>
+                                </button>
+                                <button class="icon d-flex justify-content-center align-items-center repeat">
+                                    <i data-feather="repeat" width="16" height="14"></i>
+                                </button>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="progress-time">
+                                    <span class="color-default tempo-atual">0:00</span>
+                                </div>
+                                <div class="progress w-100">
+                                    <input type="range" id="range-time" value="0" min="0" max="100">
+                                </div>
+                                <div class="progress-time">
+                                    <span class="color-default tempo-final">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 d-flex align-items-center justify-content-end">
+                        <button class="icon-right d-flex justify-content-center align-items-center">
+                            <i data-feather="list" width="16"></i>
+                        </button>
+                        <button class="icon-right d-flex justify-content-center align-items-center">
+                            <i data-feather="monitor" width="16"></i>
+                        </button>
+                        <button class="icon-right d-flex justify-content-center align-items-center mute-volume">
+                            <i data-feather="volume-2" width="16"></i>
+                        </button>
+
+                        <div class="volume-bar">
+                            <div class="progress-bar w-100">
+                                <input type="range" id="range-volume" class="progress" value="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- /////////////////////////////////////////////
+        ////////////////// Modals ///////////////////
+       ///////////////////////////////////////////// -->
+
+    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <button type="button" class="text-light close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script>
+        feather.replace()
+    </script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./node_modules/rangeslider.js/dist/rangeslider.min.js"></script>
+    <script src="assets/js/functions.js"></script>
+    <script src="assets/js/content-switch.js"></script>
+    <script src="renderer.js"></script>
+    <script src="assets/js/player.js"></script>
+    <script src="assets/js/search.js"></script>
+</body>
+
+</html>
