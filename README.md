@@ -25,7 +25,7 @@ npm run start
 
 👤 **Kore**
 
-* Website: https://korex.xyz
+* Website: 
 * Github: [@korex71](https://github.com/korex71)
 
 ## Send your commit if you want to help me <3
